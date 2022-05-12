@@ -1,26 +1,37 @@
-apply plugin: 'com.android.application'
-
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdk 32
 
     defaultConfig {
         applicationId "com.mikhaellopez.androidwebserver"
-        minSdkVersion 15
-        targetSdkVersion 23
+        minSdk 21
+        targetSdk 32
         versionCode 1
         versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'org.nanohttpd:nanohttpd:2.2.0'
-    compile 'com.android.support:design:23.1.1'
+    implementation 'org.nanohttpd:nanohttpd:2.2.0'
+    implementation 'com.android.support:appcompat-v7:23.1.1'
+    implementation 'com.android.support:design:23.1.1'
 }
